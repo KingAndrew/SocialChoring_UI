@@ -1,17 +1,16 @@
-Backbone-Require-Boilerplate (BRB)
+SocialChoring_UI
 ==================================
 ![Example](http://backbonejs.org/docs/images/backbone.png) ![Example](http://requirejs.org/i/logo.png)
 
-[Website](http://gregfranko.com/Backbone-Require-Boilerplate/)
 
 #Description
-A Backbone.js and Require.js Boilerplate that promotes decoupling your JavaScript into modules, separating business logic from application logic using Collections/Models and Views, reusing your JavaScript between Desktop and Mobile Web versions while using a mobile framework (jQuery Mobile), including non-AMD Compatible Third Party Scripts in your project, optimizing all of your JavaScript (minify, concatenate, etc), and unit testing your JavaScript.
+A JavaScript front end for the Social Choring Engine.
 
 #Getting Started
    1. Download and install [Node.js](http://nodejs.org/#download)
    2. Clone this repository
    3. On the command line, type `npm install nodemon -g` to install the [nodemon](https://github.com/remy/nodemon) library globally.  If it complains about user permissions type `sudo npm install nodemon -g`.
-   3. On the command line, navigate to inside of the **Backbone-Require-Boilerplate** folder and type `npm install`
+   3. On the command line, navigate to inside of the **SocialChoring_UI** folder and type `npm install`
    4. Next, type `nodemon` (this will start your Node.js web server and restart the server any time you make a file change thanks to the wonderful  library)
    5. To view the demo page, go to `http://localhost:8001`
    6. To view the Jasmine test suite page, go to `http://localhost:8001/specRunner.html`
@@ -228,111 +227,13 @@ spec.js
 
 ##Change Log
 
-`1.2.0` - December 1, 2012
-
-Special thanks to [Mark Simon](https://github.com/msimonc) - This release would not have happened without him
-
-- Added jQuery Mobile support
-
-- Added jQueryUI support
-
-- Upgraded all libs to their latest versions
-
-- Included a Node.js server for convenience in testing BRB
-
-- Removed the add/remove users example and reverted this project back to just a boilerplate
-
-- Added Desktop and Mobile Router Jasmine tests
-
-- Added the Require.js text plugin back in (since I now figured out how to use it with Jasmine)
-
-`1.1.0` - October 19, 2012
-
-- Upgraded to Require.js 2.1.1
-
-- Upgraded to r.js 2.1.1
-
-- Upgraded to almond.js 0.2.0
-
-- Upgraded to Lodash 0.8.2
-
-- Upgraded to jQuery 1.8.2
-
-`1.0.0` - September 19, 2012
-
-- Added Almond.js to the production build process.
-
-Thanks to [James Burke](https://github.com/jrburke) for helping with the updated build script!
-
-`0.9.0` - September 2, 2012
-
-- Complete rewrite of the Boilerplate example.  The example now illustrates how to make a simple add/remove user table with Backbone Collections, Models, and Views.
-
-- Upgraded to Lodash 0.6.1
-
-- Upgraded to jQuery 1.8.1
-
-- Added [Backbone.validateAll](https://github.com/gfranko/Backbone.validateAll)
-
-`0.8.0` - August 22, 2012
-
-- Added Project Nickname: **BRB** - Seriously how did I not see that before.
-
-- Added Jasmine Unit Tests!  Two unit tests were added for both Views and Models.
-
-- **BREAKING CHANGE**: The Require.js text plugin was removed, and an inline html template was used instead.
-
-- Upgraded to Lodash 0.5.2
-
-
-`0.7.0` - August 10, 2012
-
-- Upgraded to Require.js 2.0.5 and r.js 2.0.5 [documentation](http://tagneto.blogspot.com/2012/08/requirejs-205-released.html)
-
-- Upgraded to Lodash 0.4.2
-
-- Upgraded to jQuery 1.8.0 [documentation](http://blog.jquery.com/2012/08/09/jquery-1-8-released/)
-
-`0.6.0` - June 13, 2012
-
-- Upgraded to Require.js 2.0.2 and r.js 2.0.2 [documentation](http://tagneto.blogspot.ca/2012/06/requirejs-202-released.html)
-
-- Upgraded to Lodash 0.3.1
-
-`0.5.0` - June 5, 2012
-
-- All modules now return a class instead of an instance
-- The self variable has been removed from all modules (scoping issue)
-- The Require.js Optimizer build file (app.build.js) has been simplified by adding a `mainConfigFile` option that points to the desktop main file.  Keep in mind that all of your mobile and desktop shims and paths need to be in desktopInit.js
-
-`0.4.0` - June 1, 2012
-
-- Upgraded to Require.js 2.0.1 and r.js 2.0.1
-- Added anotherView.js to demonstrate how to extend Backbone.js Views/Classes
-- Upgraded `model.js` to now return a Model instance instead of a Model Class
-- Updated documentation
-
-`0.3.0` - June 1, 2012
-
-- Upgraded to Lodash 0.2.2
-- Removed the Lodash Shim configuration (not needed because Lodash is AMD compatible)
-- Updated documentation
-
-`0.2.0` - May 29, 2012
-
-- Upgraded to Require.js 2.0, text.js 2.0, and r.js 2.0.
-- Removed Use.js because Require.js 2.0 now includes this functionality (using the Shim configuration)
-- Replaced all the minified JavaScript files with unminified/documented JavaScript files (you can minify these files using the Require.js Optimizer script provided)
-
-`0.1.0` - May 24, 2012
-
-- Initial Backbone-Require-Boilerplate release.  Added source code and documentation.
 
 ##Contributors
-Greg Franko
+Greg Franko: SocialChoring started from a clone of Greg's work
+             [Website](http://gregfranko.com/Backbone-Require-Boilerplate/)
 
 ## License
-Copyright (c) 2012 Greg Franko  
+Copyright (c) 2013 Andrew Boyd
 Licensed under the MIT license.		
 		  
 
