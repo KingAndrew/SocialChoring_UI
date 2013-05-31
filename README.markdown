@@ -1,4 +1,4 @@
-SocialChoring_UI
+SocialChoring_UI   ![Example](https://lh4.googleusercontent.com/-zzBMRrnVSuE/T_ozyhq7GyI/AAAAAAAACEk/0pLO5GKSVqQ/w782-h637-no/SC_CornerStones.png)
 ==================================
 ![Example](http://backbonejs.org/docs/images/backbone.png) ![Example](http://requirejs.org/i/logo.png)
 
