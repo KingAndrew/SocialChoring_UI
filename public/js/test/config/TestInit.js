@@ -26,7 +26,7 @@ require.config({
       // -------
       "backbone.validateAll": "libs/plugins/Backbone.validateAll",
 
-      "bootstrap": "libs/plugins/bootstrap",
+      "fuelux/all": "libs/plugins/all",
 
       "text": "libs/plugins/text",
 
@@ -40,7 +40,7 @@ require.config({
 
       "routers": "app/routers",
 
-      "templates": "app/templates",
+      "templates": "app/views/templates",
 
       "views": "app/views"
 
@@ -50,7 +50,7 @@ require.config({
   shim: {
 
       // Twitter Bootstrap jQuery plugins
-      "bootstrap": ["jquery"],
+      "fuelux/all": ["jquery"],
 
       // Jasmine-jQuery plugin
       "jasminejquery": ["jquery"],
@@ -94,7 +94,7 @@ require.config({
 });
 
 // Include Desktop Specific JavaScript files here (or inside of your Desktop router)
-require(["jquery", "backbone", "jasmine-html", "jquerymobile", "bootstrap", "backbone.validateAll"],
+require(["jquery", "backbone", "jasmine-html", "jquerymobile", "fuelux/all", "backbone.validateAll"],
 
   function($, Backbone, jasmine) {
 

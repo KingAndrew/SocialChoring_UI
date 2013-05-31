@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title></title>
+		<script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
+		<script type="text/javascript">
+			$(function() {
+				var i = $('li').size() + 1;
+
+				$('a#add').click(function() {
+					$('<li>' + i + '</li>').appendTo('ul');
+					i++;
+				});
+
+				$('a#remove').click(function() {
+					$('li:last').remove();
+					i--;
+
+				});
+			});
+		</script>
+
+	</head>
+	<body>
+		  <ul>
+			  <li>1</li>
+			  <li>2</li>
+			  <li>3</li>
+			  <li>4</li>
+		  </ul>
+		<a href="#" id="add">Add list item</a>
+		<a href="#" id="remove">Remove list item</a>
+	</body>
+</html>

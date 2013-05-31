@@ -18,9 +18,12 @@ require.config({
       "underscore": "libs/lodash",
 
       "backbone": "libs/backbone",
+      "marionette" : "libs/backbone.marionette",
 
       // Plugins
       // -------
+      "backbone.wreqr"       : "libs/plugins/backbone.wreqr",
+      "backbone.babysitter"  : "libs/plugins/backbone.babysitter",
       "backbone.validateAll": "libs/plugins/Backbone.validateAll",
 
       "text": "libs/plugins/text",
@@ -33,7 +36,7 @@ require.config({
 
       "routers": "app/routers",
 
-      "templates": "app/templates",
+      "templates": "app/views/templates",
 
       "views": "app/views"
 

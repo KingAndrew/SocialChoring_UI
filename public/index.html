@@ -5,136 +5,338 @@
 <!--[if IE 8]>    <html class="no-js lt-ie9 ui-mobile-rendering" lang="en"> <![endif]-->
 <!--[if gt IE 8]><!--> <html class="no-js ui-mobile-rendering" lang="en"> <!--<![endif]-->
 <head>
+	<!-- For a video explanation go to http://gregfranko.com/Backbone-Require-Boilerplate/-->
   <meta charset="utf-8">
 
   <!-- Use the .htaccess and remove these lines to avoid edge case issues.
        More info: h5bp.com/i/378 -->
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 
-  <title>Backbone-Require Boilerplate</title>
-  <meta name="description" content="Backbone.js and Require.js Boilerplate Library">
+  <title>Social Choring</title>
+  <meta name="description" content="Where getting ready is fun">
 
   <!-- Mobile viewport optimized: h5bp.com/viewport -->
   <meta name="viewport" content="user-scalable=no, initial-scale=1.0, maximum-scale=1.0, width=device-width"> 
 
   <!-- Include your site specific stylesheets -->
-  <link rel="stylesheet" href="css/commonstyles.css">
+  <!-- Common styles that are shared between mobile and desktop -->
 
-  <!--Detect if the browser is a mobile browser or a desktop browser and conditionally include your JavaScript --> 
-  <script>
+	<!-- only used for learning  -->
+  <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
+  <script src="js/scratch_context.js"></script>
+  <!--Detect if the browser is a mobile browser or a desktop browser and conditionally include your JavaScript -->
+	<!--Detect if the browser is a mobile browser or a desktop browser and conditionally include your JavaScript -->
+	<script>
 
-      // Mobile/Desktop Detection script
-      (function(ua, w, d) {
+		// Mobile/Desktop Detection script
+		(function(ua, w, d) {
 
-        // Listen to the DOMContentLoaded Event (Supported in IE9+, Chrome Firefox, Safari)
-        w.addEventListener("DOMContentLoaded", function() {
+			// App Environment
+			// ---------------
+			//  Tip: Set to true to turn on "production" mode
+			var production = false,
 
-          // Mobile JavaScript
-          if((/iPhone|iPod|iPad|Android|BlackBerry|Opera Mini|IEMobile/).test(ua)) {
+			// Configuration object that will contain the correct prod/dev CSS and JavaScript files to load
+					config = {};
 
-            loadFiles({
+			// Listen to the DOMContentLoaded Event (Supported in IE9+, Chrome Firefox, Safari)
+			w.addEventListener("DOMContentLoaded", function() {
 
-              "css": "css/libs/jquery.mobile.css",
+				// Mobile/Tablet Logic
+				if((/iPhone|iPod|iPad|Android|BlackBerry|Opera Mini|IEMobile/).test(ua)) {
 
-              // Change this to "js/app/config/MobileInit.min" for production
-              "data-main": "js/app/config/MobileInit",
+					// Mobile/Tablet CSS and JavaScript files to load
+					config = {
 
-              "requirejs": "js/libs/require.js"
+						// CSS files that are loaded when in development mode
+						"dev-css": ["css/libs/jquery.mobile.css"],
 
-            });
+						// CSS files that are loaded when in production mode
+						"prod-css": ["css/libs/jquery.mobile.min.css"],
 
-          }
+						// JavaScript files that are loaded when in development mode
+						"dev-js": [{ "data-main": "js/app/config/MobileInit.js", "src": "js/libs/require.js" }],
 
-          // Desktop JavaScript
-          else {
+						// JavaScript files that are loaded when in production mode
+						"prod-js": ["js/app/config/MobileInit.min.js"]
 
-            loadFiles({
+					};
 
-              "css": "css/libs/bootstrap.css",
+				}
 
-              // Change this to "js/app/config/DesktopInit.min" for production
-              "data-main": "js/app/config/DesktopInit",
+				// Desktop Logic
+				else {
 
-              "requirejs": "js/libs/require.js"
+					// Desktop CSS and JavaScript files to load
+					config = {
 
-            });
+						// Loaded when not in production mode
+						"dev-css": ["css/libs/bootstrap.css",
+									"css/theme.css",
+									"css/animate.css",
+									"css/libs/fuelux.css",
+									"css/libs/fuelux-responsive.css",
+									"http://fonts.googleapis.com/css?family=Lato:300,400,700,900,300italic,400italic,700italic,900italic"],
 
-          }
+						// Loaded when in production mode
+						"prod-css": ["css/libs/bootstrap.min.css"],
 
-          function loadCss(url, callback) {
+						// Loaded when not in production mode
+						"dev-js": [
+							{ "data-main"   : "js/app/config/DesktopInit.js",  // where to start
+							  "src"         : "js/libs/require.js"             // must load require.js
+							  }],
 
-            var link = d.createElement("link");
-          
-            link.type = "text/css";
-    
-            link.rel = "stylesheet";
+						// Loaded when in production mode
+						"prod-js": ["js/app/config/DesktopInit.min.js"]
 
-            link.href = url;
+					}
 
-            d.querySelector("head").appendChild(link);
+				}
 
-            if(callback) callback();
+				// Loads the correct CSS and JavaScript files
+				loadFiles(config, function() {
 
-          }
+					// After both the mobile css and Require.js are loaded, the css file used for both mobile and desktop is loaded
+					loadFiles({
 
-          function loadRequireJS(obj, callback) {
+						// Loaded when not in production mode
+						"dev-css": ["css/commonstyles.css"],
 
-            var script = d.createElement('script');
-            
-            script.setAttribute("data-main", obj["data-main"]);
-            
-            script.src = obj.src;
-            
-            d.body.appendChild(script);
+						// Loaded when in production mode
+						"prod-css": ["css/commonstyles.min.css"]
 
-            if(callback) callback();
+					});
 
-          }
+				});
 
-          function loadFiles(obj) {
+				function loadCSS(urls, callback) {
 
-            // Loads the jQuery Mobile CSS file
-            loadCss(obj.css);
+					var x, link;
 
-            // Loads Require.js and tells Require.js to find the mobile intialization file
-            loadRequireJS({ "data-main": obj["data-main"], "src": obj.requirejs });
+					for(x = 0; x <= urls.length - 1; x += 1) {
 
-          }
+						link = d.createElement("link");
 
-        }, false);
+						link.type = "text/css";
 
-      })(navigator.userAgent || navigator.vendor || window.opera, window, window.document);
+						link.rel = "stylesheet";
 
-  </script>
+						link.href = urls[x];
+
+						d.querySelector("head").appendChild(link);
+
+					}
+
+					if(callback) callback();
+
+				}
+
+				function loadJS(files, callback) {
+
+					var x, script, file;
+
+					for(x = 0; x <= files.length - 1; x += 1) {
+
+						file = files[x];
+
+						script = d.createElement('script');
+
+						if(((typeof file).toLowerCase()) === "object" && file["data-main"] !== undefined) {
+
+							script.setAttribute("data-main", file["data-main"]);
+
+							script.src = file.src;
+
+						}
+
+						else {
+
+							script.src = file;
+
+						}
+
+						d.body.appendChild(script);
+
+					}
+
+					if(callback) callback();
+
+				}
+
+				function loadFiles(obj, callback) {
+
+					if(production) {
+
+						// Loads the production CSS file(s)
+						loadCSS(obj["prod-css"], function() {
+
+							// If there are production JavaScript files to load
+							if(obj["prod-js"]) {
+
+								// Loads the correct initialization file (which includes Almond.js)
+								loadJS(obj["prod-js"], callback);
+
+							}
+
+						});
+
+					}
+
+					// Else if your app is in development mode
+					else {
+
+						// Loads the development CSS file(s)
+						loadCSS(obj["dev-css"], function() {
+
+							// If there are development Javascript files to load
+							if(obj["dev-js"]) {
+
+								// Loads Require.js and tells Require.js to find the correct intialization file
+								loadJS(obj["dev-js"], callback);
+
+							}
+
+						});
+
+					}
+
+				}
+
+			}, false);
+
+		})(navigator.userAgent || navigator.vendor || window.opera, window, window.document);
+
+	</script>
 
 </head>
 <body>
 
-  <div data-role="page">
 
-    <header data-role="header" class="navbar nav navbar-inner">
-      <h1>Backbone-Require-Boilerplate (BRB)</h1>
-    </header> <!-- /header -->
+		<a href="#" class="scrolltop">
+			<span>_</span>
+		</a>
+	    <div id="top_level_header">
+			<!-- begins navbar -->
+			<div class="navbar navbar-fixed-top">
+				<div class="navbar-inner">
+					<div class="container">
+						<a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+							<span class="icon-bar"></span>
+							<span class="icon-bar"></span>
+							<span class="icon-bar"></span>
+						</a>
+						<a class="brand scroller" data-section="body" href="index.html">
+							<img src="/img/logo.png" alt="Social Choring">
+						</a>
+						<div class="nav-collapse collapse">
+							<ul class="nav pull-right">
+								<li><a href="#home" class="scroller" data-toggle="tab" data-section="#home">Home</a></li>
+								<li><a href="#start" class="scroller" data-toggle="tab" data-section="#start" >Start</a></li>
+								<li><a href="#inspectors" class="scroller" data-toggle="tab" data-section="#inspectors" >Inspectors</a></li>
+								<li><a href="#players" class="scroller" data-toggle="tab" data-section="#players">Players</a></li>
+								<li><a href="#about" >About Us</a></li>
+								<li><a href="#contact" >Contact Us</a></li>
+								<li><a href="#join">Join now</a></li>
+								<li><a href="signin.html">Log in</a></li>
+							</ul>
+						</div>
+					</div>
+				</div>
+			</div><!-- ends navbar -->
+	    </div> <!-- end #top_level_header -->
 
-    <div class="container-fluid" data-role="content">
-  
-      <div class="row-fluid">
-      
-        <div class="span12">
+        <div id="center_court">
 
-          <div class="example"></div>
-      
-        </div>
+        </div>  <!--/#center_court  -->
 
-      </div>
+		<div id="modal" class="modal hide fade in" style="display: none; ">
 
-    </div>
+        </div> <!--/#modal  -->
+	<!--<div id="intro">-->
+		<!--<div class="container">-->
+			<!--<h1>Social Choring intends to help millions of children around the world have fun getting ready on time every morning.</h1>-->
+		<!--</div>-->
+	<!--</div>-->
+	<!-- starts footer
+		<div class="container">
+			<div class="row">
+				<div class="span8">
+					<h3>From the Blog</h3>
+					<div class="blog_post">
+						<div class="row">
+							<div class="span2">
+								<a href="blog.html">
+									<img src="img/pic_blog.png" alt="post image" class="img-circle" />
+								</a>
+							</div>
+							<div class="span4">
+								<a href="blog.html" class="title">
+									Lorem Ipsum is simply dummy
+								</a>
+								<div class="intro">
+									There are many variations of passages of Lorem alteration in some form by injected look even slightly believable.
+								</div>
+								<div class="date">
+									Oct 22. 2012
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="span4 contact_us">
+					<h3>Contact Us</h3>
+					<form class="form-horizontal">
+						<div class="field">
+							<div class="label_field">
+								<label for="inputName">Name</label>
+							</div>
+							<input type="text" id="inputName" />
+						</div>
 
-    <footer class="footer navbar navbar-fixed-bottom" data-role="footer">
-        <p>Written by <a href="https://github.com/gfranko" target="_blank">Greg Franko</a></p>
-    </footer><!-- /footer -->
+						<div class="field">
+							<div class="label_field">
+								<label for="inputEmail">Email</label>
+							</div>
+							<input type="text" id="inputEmail" />
+						</div>
 
-  </div> <!-- /page -->
+						<div class="field">
+							<div class="label_field">
+								<label for="inputCity">City</label>
+							</div>
+							<input type="text" id="inputCity" />
+						</div>
 
+						<div class="field">
+							<div class="label_field">
+								<label for="inputComment">Comments</label>
+							</div>
+							<textarea name="comments" id="inputComment"></textarea>
+						</div>
+						<button type="submit" class="btn">Send</button>
+					</form>
+				</div>
+			</div>
+			<hr>
+			<div class="row copyright">
+				<div class="span5">
+					<h3>Social</h3>
+					<a href="#" class="social fb">
+						<i class="i_facebook"></i>
+					</a>
+					<a href="#" class="social tw">
+						<i class="i_twitter"></i>
+					</a>
+					<a href="#" class="social yt">
+						<i class="i_youtube"></i>
+					</a>
+				</div>
+				<div class="span2 offset5 copy">
+					<p>2013 - B&B Technical Services Inc.</p>
+				</div>
+			</div>
+		</div>
+	</div> -->
 </body>
 </html>

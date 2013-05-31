@@ -1,38 +1,27 @@
 // MobileRouter.js
 // ---------------
-define(["jquery", "backbone", "models/Model", "views/View", "collections/Collection"],
-        
-    function($, Backbone, UserModel, View, Collection) {
+define(["jquery", "marionette"],
+    function($,  marionette) {
+        "use strict";
 
-        var MobileRouter = Backbone.Router.extend({
+        var MobileRouting  = {};
 
-            initialize: function() {
-
-                // Tells Backbone to start watching for hashchange events
-                Backbone.history.start();
-
-            },
+        // This is the top of the application
+        // There should only be a few routs to start with
+        MobileRouting.Router = marionette.AppRouter.extend({
 
             // All of your Backbone Routes (add more)
-            routes: {
-                
-                // When there is no hash bang on the url, the home method is called
-                "": "index"
+            appRoutes: {
 
-            },
-
-            index: function() {
-
-                // Instantiates a new view which will render the header text to the page
-                new View();
+                // When there is no hash on the url, the home method is called
+                "": "go_start"
 
             }
-    
+
         });
 
-        // Returns the MobileRouter class
-        return MobileRouter;
+        // Returns the MobileRouting class
+        return MobileRouting;
 
     }
-
 );

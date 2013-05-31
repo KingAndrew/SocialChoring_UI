@@ -1,11 +1,11 @@
 // Jasmine Unit Testing Suite
 // --------------------------
-define(["jquery", "backbone", "text!templates/heading.html", "views/View","models/Model", "collections/Collection", "routers/DesktopRouter", "routers/MobileRouter", "jasminejquery"],
+define(["jquery", "backbone", "text!templates/PlayerLaunchPadLayout.html", "views/View","models/Model", "collections/Collection", "routers/DesktopRouter", "routers/MobileRouter", "jasminejquery"],
 
     function($, Backbone, headerText, View, Model, Collection, DesktopRouter, MobileRouter) {
 
         // Test suite that includes all of the Jasmine unit tests   
-        describe("Backbone-Require-Boilerplate (BRB)", function() {
+        describe("Social Choring UI", function() {
 
             // Backbone View Suite: contains all tests related to views
             describe("Backbone views", function() {
@@ -22,7 +22,7 @@ define(["jquery", "backbone", "text!templates/heading.html", "views/View","model
 
                     this.router = new DesktopRouter();
 
-                    expect(this.view.$el.selector).toEqual(".example");
+                    expect(this.view.$el.selector).toEqual(".center_court");
 
                 });
 
